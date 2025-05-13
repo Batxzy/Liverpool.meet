@@ -73,7 +73,7 @@ struct Product: Identifiable {
                 title: "Office Bag",
                 code: "LB-OB001",
                 price: "$234",
-                images: ["bag1", "bag1-alt1", "bag1-alt2"],
+                images: ["ada", "ada", "ada"],
                 options: [
                     ProductOption(
                         name: "Color",

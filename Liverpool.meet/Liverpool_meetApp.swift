@@ -11,7 +11,7 @@ import SwiftUI
 struct Liverpool_meetApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            mainView()
         }
     }
 }
