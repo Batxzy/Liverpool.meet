@@ -8,11 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		8C49CB352DD3CE8900BD22DA /* TabBarSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C49CB342DD3CE8900BD22DA /* TabBarSwift.swift */; };
+		8C7556A32DD3F84B009B8658 /* ObjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7556A22DD3F84B009B8658 /* ObjectModel.swift */; };
+		8C7556AC2DD3F9EE009B8658 /* MainDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7556AB2DD3F9EE009B8658 /* MainDetailView.swift */; };
+		8C7556B02DD3FF99009B8658 /* mainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7556AF2DD3FF99009B8658 /* mainView.swift */; };
+		8C7556B22DD3FFFA009B8658 /* Components2.1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7556B12DD3FFFA009B8658 /* Components2.1.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8C4540FA2DD3AFD6009933DC /* Liverpool.meet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Liverpool.meet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C49CB342DD3CE8900BD22DA /* TabBarSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarSwift.swift; sourceTree = "<group>"; };
+		8C7556A22DD3F84B009B8658 /* ObjectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectModel.swift; sourceTree = "<group>"; };
+		8C7556AB2DD3F9EE009B8658 /* MainDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDetailView.swift; sourceTree = "<group>"; };
+		8C7556AF2DD3FF99009B8658 /* mainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainView.swift; sourceTree = "<group>"; };
+		8C7556B12DD3FFFA009B8658 /* Components2.1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Components2.1.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -24,6 +32,11 @@
 		8C49CB372DD3CE9A00BD22DA /* HEADER */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = HEADER;
+			sourceTree = "<group>";
+		};
+		8C7556A82DD3F8EC009B8658 /* Componentes */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Componentes;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -42,8 +55,13 @@
 		8C4540F12DD3AFD6009933DC = {
 			isa = PBXGroup;
 			children = (
+				8C7556AB2DD3F9EE009B8658 /* MainDetailView.swift */,
+				8C7556A22DD3F84B009B8658 /* ObjectModel.swift */,
+				8C7556A82DD3F8EC009B8658 /* Componentes */,
 				8C49CB372DD3CE9A00BD22DA /* HEADER */,
 				8C49CB342DD3CE8900BD22DA /* TabBarSwift.swift */,
+				8C7556AF2DD3FF99009B8658 /* mainView.swift */,
+				8C7556B12DD3FFFA009B8658 /* Components2.1.swift */,
 				8C4540FC2DD3AFD6009933DC /* Liverpool.meet */,
 				8C4540FB2DD3AFD6009933DC /* Products */,
 			);
@@ -75,6 +93,7 @@
 			fileSystemSynchronizedGroups = (
 				8C4540FC2DD3AFD6009933DC /* Liverpool.meet */,
 				8C49CB372DD3CE9A00BD22DA /* HEADER */,
+				8C7556A82DD3F8EC009B8658 /* Componentes */,
 			);
 			name = Liverpool.meet;
 			packageProductDependencies = (
@@ -133,6 +152,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C49CB352DD3CE8900BD22DA /* TabBarSwift.swift in Sources */,
+				8C7556B02DD3FF99009B8658 /* mainView.swift in Sources */,
+				8C7556AC2DD3F9EE009B8658 /* MainDetailView.swift in Sources */,
+				8C7556B22DD3FFFA009B8658 /* Components2.1.swift in Sources */,
+				8C7556A32DD3F84B009B8658 /* ObjectModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
