@@ -6,14 +6,24 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		8C49CB352DD3CE8900BD22DA /* TabBarSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C49CB342DD3CE8900BD22DA /* TabBarSwift.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		8C4540FA2DD3AFD6009933DC /* Liverpool.meet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Liverpool.meet.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C49CB342DD3CE8900BD22DA /* TabBarSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarSwift.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		8C4540FC2DD3AFD6009933DC /* Liverpool.meet */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Liverpool.meet;
+			sourceTree = "<group>";
+		};
+		8C49CB372DD3CE9A00BD22DA /* HEADER */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = HEADER;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -32,6 +42,8 @@
 		8C4540F12DD3AFD6009933DC = {
 			isa = PBXGroup;
 			children = (
+				8C49CB372DD3CE9A00BD22DA /* HEADER */,
+				8C49CB342DD3CE8900BD22DA /* TabBarSwift.swift */,
 				8C4540FC2DD3AFD6009933DC /* Liverpool.meet */,
 				8C4540FB2DD3AFD6009933DC /* Products */,
 			);
@@ -62,6 +74,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				8C4540FC2DD3AFD6009933DC /* Liverpool.meet */,
+				8C49CB372DD3CE9A00BD22DA /* HEADER */,
 			);
 			name = Liverpool.meet;
 			packageProductDependencies = (
@@ -119,6 +132,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C49CB352DD3CE8900BD22DA /* TabBarSwift.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
