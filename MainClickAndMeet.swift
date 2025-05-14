@@ -113,7 +113,6 @@ struct ScanSheet: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            // Header
             Text("Click & Meet")
                 .font(.headline)
                 .foregroundStyle(.white)
@@ -121,20 +120,23 @@ struct ScanSheet: View {
                 .frame(height: 50)
                 .background(magenta)
             
-            // Split view content
             GeometryReader { geo in
                 HStack(spacing: 0) {
-                    // Left side - Scanning instructions
+                    // Scan Ready View (always visible)
                     ScanReadyView(accentBlue: accentBlue)
-                        .frame(width: geo.size.width/2)
+                        .frame(width: scanComplete ? geo.size.width/2 : geo.size.width)
                         .background(.white)
                     
-                    // Right side - Success confirmation
-                    ScanCompleteView(accentBlue: accentBlue)
-                        .frame(width: geo.size.width/2)
-                        .background(.black)
+                    // Scan Complete View (conditionally visible)
+                    if scanComplete {
+                        ScanCompleteView(accentBlue: accentBlue)
+                            .frame(width: geo.size.width/2)
+                            .background(.black)
+                            .transition(.move(edge: .trailing))
+                    }
                 }
             }
+            .animation(.smooth, value: scanComplete)
         }
         .presentationDetents([.height(280)])
         .presentationBackground(.clear)
@@ -164,7 +166,7 @@ struct ScanReadyView: View {
             
             Spacer().frame(height: 20)
             
-            Text("Coloca tu dispositivo cerca del tag NFC")
+            Text("Coloca tu dispositivo cerca del NFC")
                 .font(.callout)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
