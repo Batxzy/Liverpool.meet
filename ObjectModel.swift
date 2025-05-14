@@ -53,7 +53,7 @@ struct ProductPromotion: Identifiable {
     let validUntil: Date
 }
 
-struct Product: Identifiable {
+struct Product: Identifiable, Hashable {
     let id = UUID()
     let maker: String
     let title: String
@@ -65,6 +65,15 @@ struct Product: Identifiable {
     let storeAvailability: [StoreAvailability]
     let freeShipping: Bool
     let homeDeliveryAvailable: Bool
+    
+    // Required for Hashable
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
+    static func == (lhs: Product, rhs: Product) -> Bool {
+        lhs.id == rhs.id
+    }
     
     static var placeholders: [Product] {
         [
@@ -149,3 +158,5 @@ struct Product: Identifiable {
         ]
     }
 }
+
+

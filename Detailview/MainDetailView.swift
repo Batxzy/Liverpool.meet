@@ -5,11 +5,17 @@
 //  Created by Jose julian Lopez on 13/05/25.
 //
 
+extension View {
+    func debugStroke(_ color: Color = .red) -> some View {
+        self.overlay(Rectangle().stroke(color, lineWidth: 1))
+    }
+}
+
 import SwiftUI
+
 
 struct EnhancedProductDetailsView: View {
     @Binding var product: Product?
-    @Binding var showDetailsView: Bool
     var animation: Namespace.ID
     @State private var selectedColor = Color.clear
     @State private var selectedImageIndex = 0
@@ -17,58 +23,49 @@ struct EnhancedProductDetailsView: View {
     @State private var quantity = 1
     @State private var selectedOptions: [String: String] = [:]
     @State private var animateContent = false
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         if let product = product {
             ZStack {
                 // Background layer
-                selectedColor
+                Color.accentColor
                     .ignoresSafeArea()
                 
                 // Main content
                 ScrollView {
+                    HeaderView()
+
                     VStack(alignment: .leading, spacing: 0) {
-                        // Header with back button
-                        HeaderView(showDetailsView: $showDetailsView)
-                        
-                        // Maker name
-                        Text(product.maker)
-                            .font(.headline)
-                            .padding(.horizontal)
-                            .padding(.top, 8)
-                            .foregroundStyle(.black)
-                            .opacity(animateContent ? 1 : 0)
-                            .offset(y: animateContent ? 0 : 20)
-                        
-                        // Product name and code
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text(product.title)
-                                .font(.title)
-                                .fontWeight(.bold)
-                                .foregroundStyle(.black)
+                        VStack(alignment: .leading, spacing: 10) {
+                            ProductHeaderInfo(
+                                product: product,
+                                animateContent: animateContent
+                            )
                             
-                            Text("Código: \(product.code)")
-                                .font(.subheadline)
-                                .foregroundStyle(.black.opacity(0.8))
+                            // Image with zoom transition
+                            ZStack {
+                                Image(product.images[selectedImageIndex])
+                                    .resizable()
+                                    .scaledToFill()
+                                    .padding(20)
+                            }
+                            .frame(height: 300)
+                            .frame(width: .infinity)
+                            .clipped()
                         }
-                        .padding(.horizontal)
-                        .opacity(animateContent ? 1 : 0)
-                        .offset(y: animateContent ? 0 : 20)
                         
-                        // Image
-                        ZStack {
-                            Image(product.images[selectedImageIndex])
-                                .resizable()
-                                .scaledToFit()
-                                .padding(20)
-                                .matchedGeometryEffect(id: product.images.first ?? "", in: animation)
-                        }
-                        .frame(height: 300)
+                       
                         
                         // Info Panel Content
-                        productInfoPanel(product)
-                            .opacity(animateContent ? 1 : 0)
-                            .offset(y: animateContent ? 0 : 60)
+                        ProductInfoPanel(
+                            product: product,
+                            selectedColor: $selectedColor,
+                            quantity: $quantity,
+                            selectedOptions: $selectedOptions,
+                            isShowingPromotions: $isShowingPromotions,
+                            animateContent: animateContent
+                        )
                     }
                 }
                 .scrollIndicators(.hidden)
@@ -84,38 +81,68 @@ struct EnhancedProductDetailsView: View {
                     
                     // Animate content after a slight delay
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                        withAnimation(.smooth(duration: 0.4)) {
+                        withAnimation(.snappy(duration: 0.4)) {
                             animateContent = true
                         }
                     }
                 }
-                
-                // Promotions overlay
-                if isShowingPromotions {
-                    Color.black.opacity(0.3)
-                        .ignoresSafeArea()
-                        .onTapGesture {
-                            withAnimation(.smooth) {
-                                isShowingPromotions = false
-                            }
-                        }
-                        .transition(.opacity)
-                    
-                    VStack {
-                        Spacer()
-                        PromotionsView(
-                            promotions: product.promotions,
-                            isShowingPromotions: $isShowingPromotions
-                        )
-                    }
-                    .ignoresSafeArea()
-                }
             }
             .preferredColorScheme(.light)
+            .sheet(isPresented: $isShowingPromotions) {
+                PromotionsSheet(
+                    promotions: product.promotions,
+                    isShowingPromotions: $isShowingPromotions
+                )
+                .presentationDetents([.medium, .large])
+                .presentationCornerRadius(30)
+                .presentationDragIndicator(.visible)
+            }
         }
     }
+}
+
+struct ProductHeaderInfo: View {
+    let product: Product
+    let animateContent: Bool
     
-    private func productInfoPanel(_ product: Product) -> some View {
+    var body: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            // Maker name
+            Text(product.maker)
+                .font(.headline)
+                .padding(.horizontal)
+                .padding(.top, 8)
+                .foregroundStyle(.white)
+                .opacity(animateContent ? 1 : 0)
+                .offset(y: animateContent ? 0 : 20)
+            
+            // Product name and code
+            VStack(alignment: .leading, spacing: 4) {
+                Text(product.title)
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .foregroundStyle(.white)
+                
+                Text("Código: \(product.code)")
+                    .font(.subheadline)
+                    .foregroundStyle(.white.opacity(0.8))
+            }
+            .padding(.horizontal)
+            .opacity(animateContent ? 1 : 0)
+            .offset(y: animateContent ? 0 : 20)
+        }
+    }
+}
+
+struct ProductInfoPanel: View {
+    let product: Product
+    @Binding var selectedColor: Color
+    @Binding var quantity: Int
+    @Binding var selectedOptions: [String: String]
+    @Binding var isShowingPromotions: Bool
+    let animateContent: Bool
+    
+    var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             // Price
             Text(product.price)
@@ -179,18 +206,18 @@ struct EnhancedProductDetailsView: View {
                 .fill(.background)
         )
         .offset(y: -30)
+        .opacity(animateContent ? 1 : 0)
+        .offset(y: animateContent ? 0 : 60)
     }
 }
 
 struct HeaderView: View {
-    @Binding var showDetailsView: Bool
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         HStack {
             Button {
-                withAnimation(.smooth(duration: 0.5, extraBounce: 0)) {
-                    showDetailsView.toggle()
-                }
+                dismiss()
             } label: {
                 Image(systemName: "chevron.left")
                     .font(.title2)
@@ -222,9 +249,7 @@ struct PromoButton: View {
     
     var body: some View {
         Button {
-            withAnimation(.smooth) {
-                isShowingPromotions = true
-            }
+            isShowingPromotions = true
         } label: {
             HStack {
                 Image(systemName: "tag.fill")
@@ -406,6 +431,75 @@ struct DropdownLabelView: View {
     }
 }
 
+struct PromotionsSheet: View {
+    let promotions: [ProductPromotion]
+    @Binding var isShowingPromotions: Bool
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            HStack {
+                Text("Promociones disponibles")
+                    .font(.title2)
+                    .fontWeight(.bold)
+                
+                Spacer()
+                
+                Button {
+                    isShowingPromotions = false
+                } label: {
+                    Image(systemName: "xmark")
+                        .fontWeight(.semibold)
+                        .foregroundStyle(.secondary)
+                }
+            }
+            .padding(.horizontal,25)
+            .padding(.vertical,15)
+            
+            Divider()
+            
+            ScrollView {
+                VStack(spacing: 12) {
+                    ForEach(promotions) { promotion in
+                        PromotionCard(promotion: promotion)
+                    }
+                }
+                .padding(.horizontal)
+            }
+        }
+        .padding(.top)
+    }
+}
+
+struct PromotionCard: View {
+    let promotion: ProductPromotion
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack(alignment: .top) {
+                Image(systemName: "tag.fill")
+                    .foregroundStyle(.yellow)
+                    .font(.headline)
+                
+                Text(promotion.title)
+                    .font(.headline)
+                
+                Spacer()
+                
+                // Format date to show day and month
+                Text(promotion.validUntil.formatted(date: .abbreviated, time: .omitted))
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+            
+            Text(promotion.description)
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+        }
+        .padding()
+        .background(Color.secondary.opacity(0.1))
+        .clipShape(RoundedRectangle(cornerRadius: 12))
+    }
+}
 
 // DropdownItemView - Represents a single selectable item
 struct DropdownItemView: View {
@@ -504,20 +598,18 @@ struct SimpleDropdownView: View {
     }
 }
 
-#Preview {
-    struct PreviewWrapper: View {
-        @State private var demoProduct: Product? = Product.placeholders.first
-        @State private var showDetails = true
+#Preview("Product Details") {
+    struct DetailsPreview: View {
+        @State private var product: Product? = Product.placeholders.first
         @Namespace private var animation
         
         var body: some View {
             EnhancedProductDetailsView(
-                product: $demoProduct,
-                showDetailsView: $showDetails,
+                product: $product,
                 animation: animation
             )
         }
     }
     
-    return PreviewWrapper()
+    return DetailsPreview()
 }

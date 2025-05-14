@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C139CF92DD40E0D003804DB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C139CF82DD40E0D003804DB /* ContentView.swift */; };
 		8C49CB352DD3CE8900BD22DA /* TabBarSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C49CB342DD3CE8900BD22DA /* TabBarSwift.swift */; };
 		8C7556A32DD3F84B009B8658 /* ObjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7556A22DD3F84B009B8658 /* ObjectModel.swift */; };
 		8C7556B02DD3FF99009B8658 /* mainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7556AF2DD3FF99009B8658 /* mainView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8C139CF82DD40E0D003804DB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8C4540FA2DD3AFD6009933DC /* Liverpool.meet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Liverpool.meet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C49CB342DD3CE8900BD22DA /* TabBarSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarSwift.swift; sourceTree = "<group>"; };
 		8C7556A22DD3F84B009B8658 /* ObjectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectModel.swift; sourceTree = "<group>"; };
@@ -60,6 +62,7 @@
 				8C7556B52DD402B5009B8658 /* Detailview */,
 				8C7556A22DD3F84B009B8658 /* ObjectModel.swift */,
 				8C49CB342DD3CE8900BD22DA /* TabBarSwift.swift */,
+				8C139CF82DD40E0D003804DB /* ContentView.swift */,
 				8C49CB372DD3CE9A00BD22DA /* HEADER */,
 				8C7556AF2DD3FF99009B8658 /* mainView.swift */,
 				8C4540FC2DD3AFD6009933DC /* Liverpool.meet */,
@@ -154,6 +157,7 @@
 			files = (
 				8C49CB352DD3CE8900BD22DA /* TabBarSwift.swift in Sources */,
 				8C7556B02DD3FF99009B8658 /* mainView.swift in Sources */,
+				8C139CF92DD40E0D003804DB /* ContentView.swift in Sources */,
 				8C7556A32DD3F84B009B8658 /* ObjectModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

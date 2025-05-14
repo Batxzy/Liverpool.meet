@@ -3,4 +3,22 @@
    uuid = "940DAC91-808D-4267-9921-96B2B62D96B7"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4F3F78E2-AFBC-45E4-8A0A-D5192318CCA8"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../../var/folders/_j/4zxl8lss3n7_gm7rwdxvqq6r0000gn/T/swift-generated-sources/@__swiftmacro_14Liverpool_meet0025MainDetailViewswift_jqFBgfMX436_0_33_9E380F36AB51C11753A06A298C635A9DLl7PreviewfMf_.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1"
+            endingLineNumber = "1"
+            landmarkName = "dropdownLabel"
+            landmarkType = "37">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

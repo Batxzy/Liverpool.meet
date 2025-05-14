@@ -8,51 +8,35 @@
 import SwiftUI
 
 
-struct HomeView: View {
-    @State private var selectedTab: SwipeMenu = .handBag
-    @Namespace private var animation
-    @State private var showDetailsView = false
-    @State private var selectedProduct: Product?
-
+struct HomeContentView: View {
+    @Binding var selectedTab: SwipeMenu
+    var animation: Namespace.ID
+    @Binding var selectedProduct: Product?
+    
     var body: some View {
-        ZStack {
-            // Main HomeView
-            VStack(spacing: 0) {
-                HomeNavBar()
-                    .padding()
-                    .background(.background)
-                    .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5)
-                    .opacity(showDetailsView ? 0 : 1)
-
-                ScrollView {
-                    VStack {
-                        SectionTitle()
-                            .padding()
-                        
-                        SwipeMenuView(selectedTab: $selectedTab, animation: animation)
-                        
-                        ProductGridView(
-                            animation: animation,
-                            showDetailsView: $showDetailsView,
-                            selectedProduct: $selectedProduct
-                        )
-                        .padding()
-                    }
-                }
-                .scrollIndicators(.hidden)
-            }
-            .background(Color.black.opacity(0.05).ignoresSafeArea())
+        VStack(spacing: 0) {
+            HomeNavBar()
+                .padding()
+                .background(.background)
+                .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5)
             
-            // Details View Overlay
-            if selectedProduct != nil && showDetailsView {
-                EnhancedProductDetailsView(
-                    product: $selectedProduct,
-                    showDetailsView: $showDetailsView,
-                    animation: animation
-                )
-                .transition(.identity)
+            ScrollView {
+                VStack {
+                    SectionTitle()
+                        .padding()
+                    
+                    SwipeMenuView(selectedTab: $selectedTab, animation: animation)
+                    
+                    EnhancedProductGridView(
+                        selectedProduct: $selectedProduct,
+                        animation: animation
+                    )
+                    .padding()
+                }
             }
+            .scrollIndicators(.hidden)
         }
+        .background(Color.black.opacity(0.05).ignoresSafeArea())
     }
 }
 
@@ -144,12 +128,10 @@ struct TabButton: View {
     }
 }
 
-struct ProductGridView: View {
-    var animation: Namespace.ID
-    @Binding var showDetailsView: Bool
+struct EnhancedProductGridView: View {
     @Binding var selectedProduct: Product?
+    var animation: Namespace.ID
     
-    // Adaptive grid that works better on different screen sizes
     private let columns = [
         GridItem(.adaptive(minimum: 160), spacing: 15)
     ]
@@ -157,23 +139,18 @@ struct ProductGridView: View {
     var body: some View {
         LazyVGrid(columns: columns, spacing: 15) {
             ForEach(Product.placeholders) { product in
-                ProductGridItem(product: product, animation: animation)
-                    .onTapGesture {
-                        didSelect(product)
-                    }
+                Button {
+                    selectedProduct = product
+                } label: {
+                    EnhancedProductGridItem(product: product, animation: animation)
+                }
+                .buttonStyle(.plain)
             }
-        }
-    }
-    
-    private func didSelect(_ product: Product) {
-        withAnimation(.smooth(duration: 0.3)) {
-            selectedProduct = product
-            showDetailsView.toggle()
         }
     }
 }
 
-struct ProductGridItem: View {
+struct EnhancedProductGridItem: View {
     let product: Product
     var animation: Namespace.ID
     
@@ -181,13 +158,14 @@ struct ProductGridItem: View {
         VStack(alignment: .leading, spacing: 6) {
             ZStack {
                 Color(product.images.first ?? "")
+                    .opacity(0.8)
                     .clipShape(RoundedRectangle(cornerRadius: 15))
                 
                 Image(product.images.first ?? "")
                     .resizable()
                     .scaledToFit()
                     .padding(20)
-                    .matchedGeometryEffect(id: product.images.first ?? "", in: animation)
+                    .matchedTransitionSource(id: "productTransition", in: animation)
             }
             .aspectRatio(1, contentMode: .fit)
             
@@ -227,6 +205,3 @@ enum SwipeMenu: String, CaseIterable {
 }
 
 // MARK: - Preview
-#Preview {
-    HomeView()
-}
