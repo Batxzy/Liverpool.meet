@@ -90,7 +90,7 @@ struct InteractiveTabBar: View {
                 .background {
                     if isActive {
                         Circle()
-                            .fill(.blue.gradient)
+                            .fill(.accent.gradient)
                             .matchedGeometryEffect(id: "ACTIVETAB", in: animation)
                     }
                 }
@@ -99,7 +99,7 @@ struct InteractiveTabBar: View {
             
             Text(tab.rawValue)
                 .font(.caption2)
-                .foregroundStyle(isActive ? .blue : .gray)
+                .foregroundStyle(isActive ? .accent : .gray)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
         .contentShape(.rect)

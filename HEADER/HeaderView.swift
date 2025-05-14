@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct ReusableHeaderView: View {
     var safeAreaTop: CGFloat
     @Binding var offsetY: CGFloat
@@ -86,28 +87,30 @@ struct HeaderTopSection: View {
                     .fill(.black)
                     .opacity(0.15)
             }
-            .opacity(showSearchBar ? 1 : 1 + progress)
+            .opacity(showSearchBar ? 1 : max(0.3, 1 + progress))
             
-            if !showSearchBar {
-                // Like button
-                Button(action: onLikeTapped) {
-                    Image(systemName: "heart")
-                        .font(.title3)
-                        .fontWeight(.semibold)
-                        .foregroundColor(.white)
-                }
-                .opacity(1 + progress)
-                
-                // Wishlist button
-                Button(action: onWishlistTapped) {
-                    Image(systemName: "cart")
-                        .font(.title3)
-                        .fontWeight(.semibold)
-                        .foregroundColor(.white)
-                }
-                .opacity(1 + progress)
-            } else {
-                // Close search button
+            // Like button - Always visible
+            Button(action: onLikeTapped) {
+                Image(systemName: "heart")
+                    .font(.title3)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.white)
+            }
+            .transition(.opacity)
+            .opacity(showSearchBar ? 0 : 1)
+            
+            // Wishlist button - Always visible
+            Button(action: onWishlistTapped) {
+                Image(systemName: "cart")
+                    .font(.title3)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.white)
+            }
+            .transition(.opacity)
+            .opacity(showSearchBar ? 0 : 1)
+            
+            // Close search button - Only visible in search mode
+            if showSearchBar {
                 Button {
                     showSearchBar = false
                 } label: {
@@ -116,11 +119,11 @@ struct HeaderTopSection: View {
                         .fontWeight(.semibold)
                         .foregroundColor(.white)
                 }
+                .transition(.opacity)
             }
         }
     }
 }
-
 struct HeaderButtonsSection: View {
     var progress: CGFloat
     var offsetY: CGFloat

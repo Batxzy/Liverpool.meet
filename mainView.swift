@@ -7,12 +7,66 @@
 
 import SwiftUI
 
-struct mainView: View {
+
+struct MainAppView: View {
+    @State private var activeTab: TabItem = .home
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack(alignment: .bottom) {
+            TabView(selection: $activeTab) {
+                // Home Tab with Content View
+                HomeTabWrapper()
+                    .tag(TabItem.home)
+                    .toolbar(.hidden, for: .tabBar)
+                
+                // Other tabs
+                MeetTab()
+                    .tag(TabItem.meet)
+                    .toolbar(.hidden, for: .tabBar)
+                
+                UserAccountTab()
+                    .tag(TabItem.user)
+                    .toolbar(.hidden, for: .tabBar)
+                
+                ServicesTab()
+                    .tag(TabItem.service)
+                    .toolbar(.hidden, for: .tabBar)
+            }
+            
+            // Custom Tab Bar
+            InteractiveTabBar(activeTab: $activeTab)
+        }
     }
 }
 
+struct HomeTabWrapper: View {
+    var body: some View {
+        ContentView()
+    }
+}
+
+// Basic placeholders for other tabs
+struct MeetTab: View {
+    var body: some View {
+        Text("Meet Tab")
+            .font(.largeTitle.bold())
+    }
+}
+
+struct UserAccountTab: View {
+    var body: some View {
+        Text("User Account")
+            .font(.largeTitle.bold())
+    }
+}
+
+struct ServicesTab: View {
+    var body: some View {
+        Text("Services")
+            .font(.largeTitle.bold())
+    }
+}
 #Preview {
-    mainView()
+    MainAppView()
+        .environment(\.isDragging, false)
 }

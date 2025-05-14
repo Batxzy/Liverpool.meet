@@ -15,10 +15,6 @@ struct HomeContentView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            HomeNavBar()
-                .padding()
-                .background(.background)
-                .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5)
             
             ScrollView {
                 VStack {
@@ -37,38 +33,10 @@ struct HomeContentView: View {
             .scrollIndicators(.hidden)
         }
         .background(Color.black.opacity(0.05).ignoresSafeArea())
+        .frame(height: .infinity)
     }
 }
 
-struct HomeNavBar: View {
-    var body: some View {
-        HStack {
-            Button {
-                // Menu action
-            } label: {
-                Image(systemName: "line.3.horizontal")
-                    .font(.title2)
-                    .foregroundStyle(.primary)
-            }
-            
-            Spacer()
-            
-            Text("Shopaholic")
-                .font(.title3)
-                .fontWeight(.bold)
-            
-            Spacer()
-            
-            Button {
-                // Search action
-            } label: {
-                Image(systemName: "magnifyingglass")
-                    .font(.title2)
-                    .foregroundStyle(.primary)
-            }
-        }
-    }
-}
 
 struct SectionTitle: View {
     var body: some View {
