@@ -14,13 +14,13 @@ struct MainAppView: View {
     var body: some View {
         ZStack(alignment: .bottom) {
             TabView(selection: $activeTab) {
-                // Home Tab with Content View
+                // Home Tab 
                 HomeTabWrapper()
                     .tag(TabItem.home)
                     .toolbar(.hidden, for: .tabBar)
                 
                 // Other tabs
-                MeetTab()
+                ClickAndMeetView()
                     .tag(TabItem.meet)
                     .toolbar(.hidden, for: .tabBar)
                 

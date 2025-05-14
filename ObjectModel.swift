@@ -82,7 +82,7 @@ struct Product: Identifiable, Hashable {
                     title: "Bolso de Oficina",
                     code: "ELG-BO001",
                     price: "$234",
-                    images: ["bag1", "bag1-detail", "bag1-alt"],
+                    images: ["Bag1", "bag1-detail", "bag1-alt"],
                     options: [
                         ProductOption(
                             name: "Color",
@@ -129,7 +129,7 @@ struct Product: Identifiable, Hashable {
                     title: "Bolso de Compras",
                     code: "EU-BC002",
                     price: "$199",
-                    images: ["bag2", "bag2-detail", "bag2-alt"],
+                    images: ["Bag2", "bag2-detail", "bag2-alt"],
                     options: [
                         ProductOption(
                             name: "Color",
@@ -161,7 +161,7 @@ struct Product: Identifiable, Hashable {
                     title: "Bolso Tote Diseñador",
                     code: "GLM-TD003",
                     price: "$329",
-                    images: ["tote1", "tote1-detail", "tote1-alt"],
+                    images: ["Bag3", "tote1-detail", "tote1-alt"],
                     options: [
                         ProductOption(
                             name: "Color",

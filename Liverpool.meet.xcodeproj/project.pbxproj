@@ -11,6 +11,7 @@
 		8C49CB352DD3CE8900BD22DA /* TabBarSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C49CB342DD3CE8900BD22DA /* TabBarSwift.swift */; };
 		8C7556A32DD3F84B009B8658 /* ObjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7556A22DD3F84B009B8658 /* ObjectModel.swift */; };
 		8C7556B02DD3FF99009B8658 /* mainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7556AF2DD3FF99009B8658 /* mainView.swift */; };
+		8C7591D42DD437EB00459E9F /* MainClickAndMeet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7591D32DD437EB00459E9F /* MainClickAndMeet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		8C49CB342DD3CE8900BD22DA /* TabBarSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarSwift.swift; sourceTree = "<group>"; };
 		8C7556A22DD3F84B009B8658 /* ObjectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectModel.swift; sourceTree = "<group>"; };
 		8C7556AF2DD3FF99009B8658 /* mainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainView.swift; sourceTree = "<group>"; };
+		8C7591D32DD437EB00459E9F /* MainClickAndMeet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainClickAndMeet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -65,6 +67,7 @@
 				8C139CF82DD40E0D003804DB /* ContentView.swift */,
 				8C49CB372DD3CE9A00BD22DA /* HEADER */,
 				8C7556AF2DD3FF99009B8658 /* mainView.swift */,
+				8C7591D32DD437EB00459E9F /* MainClickAndMeet.swift */,
 				8C4540FC2DD3AFD6009933DC /* Liverpool.meet */,
 				8C4540FB2DD3AFD6009933DC /* Products */,
 			);
@@ -159,6 +162,7 @@
 				8C7556B02DD3FF99009B8658 /* mainView.swift in Sources */,
 				8C139CF92DD40E0D003804DB /* ContentView.swift in Sources */,
 				8C7556A32DD3F84B009B8658 /* ObjectModel.swift in Sources */,
+				8C7591D42DD437EB00459E9F /* MainClickAndMeet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
